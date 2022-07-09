@@ -1,0 +1,3 @@
+[submodule "MCWFC"]
+	path = MCWFC
+	url = https://github.com/bananasmoothii/MCWFC
