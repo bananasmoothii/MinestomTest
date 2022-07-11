@@ -64,8 +64,8 @@ public class Selector {
                 .formatted(pos.blockX(), pos.blockY(), pos.blockZ()) + (selection.isComplete() ? " (" + selection.volume() + ')' : "")));
     }
 
-    public Selection getSelection(Player player) {
-        return selections.computeIfAbsent(player, Selection::new);
+    public static @UnknownNullability Selection getSelection(@NotNull Player player) {
+        return withInstance(player.getInstance()).selections.computeIfAbsent(player, Selection::new);
     }
 
     public static boolean isAutoEnable() {

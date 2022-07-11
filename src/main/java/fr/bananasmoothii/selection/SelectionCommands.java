@@ -7,6 +7,7 @@ import net.minestom.server.command.builder.Command;
 import net.minestom.server.command.builder.CommandContext;
 import net.minestom.server.command.builder.CommandExecutor;
 import net.minestom.server.command.builder.arguments.ArgumentType;
+import net.minestom.server.coordinate.Point;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.Instance;
 import net.minestom.server.inventory.PlayerInventory;
@@ -138,7 +139,7 @@ public class SelectionCommands {
          * @param amount amount of blocks to expand/contract. Positive values will expand the region, negative value will contract the selection
          */
         public void expandContract(@NotNull Player player, Direction direction, int amount) {
-            final Selection selection = Selector.withInstance(player.getInstance()).getSelection(player);
+            final Selection selection = Selector.getSelection(player);
             if (! selection.isComplete()) {
                 player.sendMessage(miniMessage().deserialize("<red>You must select a region first with a diamond hoe"));
                 return;
@@ -147,10 +148,14 @@ public class SelectionCommands {
             final int plusX = direction.normalX(),
                     plusY = direction.normalY(),
                     plusZ = direction.normalZ();
-            if (plusX == 1 || plusY == 1 || plusZ == 1) {
-                selection.selectPos2(selection.getMaxPoint().add(plusX * amount, plusY * amount, plusZ * amount));
+            final Point pos1 = selection.getPos1();
+            final Point pos2 = selection.getPos2();
+            if ((plusX * (pos2.x() - pos1.x()) > 0) || (plusY * (pos2.y() - pos1.y()) > 0) || (plusZ * (pos2.z() - pos1.z()) > 0)) {
+                selection.selectPos2(selection.getPos2().add(plusX * amount, plusY * amount, plusZ * amount)
+                        .withY(y -> y < -64 ? -64 : y > 319 ? 319 : y));
             } else {
-                selection.selectPos1(selection.getMinPoint().add(plusX * amount, plusY * amount, plusZ * amount));
+                selection.selectPos1(selection.getPos1().add(plusX * amount, plusY * amount, plusZ * amount)
+                        .withY(y -> y < -64 ? -64 : y > 319 ? 319 : y));
             }
 
             if (amount > 0) {
@@ -167,7 +172,7 @@ public class SelectionCommands {
         public Unselect() {
             super("/unselect", "/;", "/clearselections");
             setDefaultExecutor((SelectionsExecutor) (player, context) -> {
-                Selector.withInstance(player.getInstance()).getSelection(player).clear();
+                Selector.getSelection(player).clear();
                 player.sendMessage(miniMessage().deserialize("<light_purple>Selection cleared"));
             });
         }

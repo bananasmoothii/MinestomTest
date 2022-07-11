@@ -52,6 +52,14 @@ public class Selection {
         return new Pos(min(x1, x2), min(y1, y2), min(z1, z2));
     }
 
+    public Point getPos1() {
+        return new Pos(x1, y1, z1);
+    }
+
+    public Point getPos2() {
+        return new Pos(x2, y2, z2);
+    }
+
     public boolean isPos1Selected() {
         return pos1Selected;
     }

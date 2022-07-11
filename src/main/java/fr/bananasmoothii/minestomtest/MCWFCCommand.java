@@ -69,7 +69,7 @@ public class MCWFCCommand extends Command {
                 final boolean useModuloCoords = context.get("mc");
 
                 final Instance instance = Objects.requireNonNull(player.getInstance());
-                final Selection selection = Selector.withInstance(instance).getSelection(player);
+                final Selection selection = Selector.getSelection(player);
                 final Bounds bounds;
                 try {
                     bounds = selection.toBounds();
@@ -116,7 +116,7 @@ public class MCWFCCommand extends Command {
                 final long seed = (long) context.get("seed") == 0 ? ThreadLocalRandom.current().nextLong() : context.get("seed");
 
                 final Instance instance = Objects.requireNonNull(player.getInstance());
-                final Selection selection = Selector.withInstance(instance).getSelection(player);
+                final Selection selection = Selector.getSelection(player);
                 final Bounds bounds;
                 try {
                     bounds = selection.toBounds();

@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cb9301b-027b-4abf-9575-7a3c857bbf53" name="Changes" comment="fixed selections">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/MCWFCCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/util/CommandUtils.java" afterDir="false" />
+    <list default="true" id="8cb9301b-027b-4abf-9575-7a3c857bbf53" name="Changes" comment="implemented MCWFC">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCWFC" beforeDir="false" afterPath="$PROJECT_DIR$/MCWFC" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCWFC/src/main/java/fr/bananasmoothii/mcwfc/core/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/MCWFC/src/main/java/fr/bananasmoothii/mcwfc/core/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCWFC/src/main/java/fr/bananasmoothii/mcwfc/core/Wave.java" beforeDir="false" afterPath="$PROJECT_DIR$/MCWFC/src/main/java/fr/bananasmoothii/mcwfc/core/Wave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MCWFC/src/test/java/fr/bananasmoothii/mcwfc/LittleTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/MCWFC/src/test/java/fr/bananasmoothii/mcwfc/LittleTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/MCWFCCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/MCWFCCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/selection/Selection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/selection/Selection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/selection/SelectionCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/selection/SelectionCommands.java" afterDir="false" />
@@ -65,7 +60,7 @@
         <entry key="$PROJECT_DIR$/MCWFC" value="95cc4a887d69555c9b9ae9bfb8f061d7381aa481" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/MCWFC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -76,22 +71,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/nils/Programmation/Java/MCWFC&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/nils/Programmation/Kotlin/MinestomTest/src/main/java/fr/bananasmoothii/minestomtest/Main2.java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "two.files.diff.last.used.file": "/home/nils/Programmation/Kotlin/MinestomTest/src/main/java/fr/bananasmoothii/minestomtest/Main2.java"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest" />
@@ -158,7 +154,8 @@
       <workItem from="1657487728201" duration="1511000" />
       <workItem from="1657526958801" duration="8156000" />
       <workItem from="1657538718744" duration="7373000" />
-      <workItem from="1657548579142" duration="15598000" />
+      <workItem from="1657548579142" duration="15734000" />
+      <workItem from="1657571124799" duration="4491000" />
     </task>
     <task id="LOCAL-00001" summary="things and server shutdown message">
       <created>1657486673410</created>
@@ -181,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657551285131</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="implemented MCWFC">
+      <created>1657569755112</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657569755112</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +208,8 @@
     <MESSAGE value="things and server shutdown message" />
     <MESSAGE value="selection logic start" />
     <MESSAGE value="fixed selections" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed selections" />
+    <MESSAGE value="implemented MCWFC" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented MCWFC" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -212,12 +217,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/fr/bananasmoothii/selection/Selector.java</url>
-          <line>30</line>
+          <line>29</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/fr/bananasmoothii/selection/Selector.java</url>
-          <line>36</line>
+          <line>35</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
