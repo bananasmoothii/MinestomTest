@@ -15,6 +15,8 @@ import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.generator.UnitModifier;
 import org.tinylog.Logger;
+import selection.SelectionCommands;
+import selection.Selector;
 
 import java.util.concurrent.ForkJoinPool;
 
@@ -37,6 +39,10 @@ public class Main {
             modifier.fillHeight(63, 64, Block.GRASS_BLOCK);
         });
 
+        // enable a WorldEdit-like selector
+        Selector.enable(instanceContainer);
+        SelectionCommands.registerAll();
+
         // Add an event callback to specify the spawning instance (and the spawn position)
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
         globalEventHandler.addListener(PlayerLoginEvent.class, event -> {
@@ -53,14 +59,6 @@ public class Main {
                     player.kick(Component.text("Server is shutting down", TextColor.color(255, 0, 0)));
                 }
             }
-        });
-
-        ForkJoinPool.commonPool().submit(() -> {
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException ignored) {
-            }
-            MinecraftServer.stopCleanly();
         });
 
         // Start the server on port 25565

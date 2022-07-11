@@ -25,9 +25,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.Minestom:Minestom:master-SNAPSHOT")
+    implementation("com.github.bananasmoothii:Minestom:master-SNAPSHOT")
     implementation("org.tinylog:slf4j-tinylog:2.4.1")
     compileOnly("org.jetbrains:annotations:23.0.0")
+    implementation("net.kyori:adventure-text-minimessage:4.11.0")
 }
 
 tasks {
