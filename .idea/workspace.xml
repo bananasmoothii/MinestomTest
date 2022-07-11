@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cb9301b-027b-4abf-9575-7a3c857bbf53" name="Changes" comment="things and server shutdown message">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/selection/IncompleteSelectionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/selection/Selection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/selection/SelectionCommands.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/selection/Selector.java" afterDir="false" />
+    <list default="true" id="8cb9301b-027b-4abf-9575-7a3c857bbf53" name="Changes" comment="selection logic start">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/bananasmoothii/minestomtest/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/selection/Selection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/selection/Selection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +149,8 @@
       <workItem from="1657442463822" duration="10536000" />
       <workItem from="1657487728201" duration="1511000" />
       <workItem from="1657526958801" duration="8156000" />
-      <workItem from="1657538718744" duration="7171000" />
+      <workItem from="1657538718744" duration="7373000" />
+      <workItem from="1657548579142" duration="2515000" />
     </task>
     <task id="LOCAL-00001" summary="things and server shutdown message">
       <created>1657486673410</created>
@@ -163,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657486673410</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="selection logic start">
+      <created>1657546081498</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657546081499</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,8 +184,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="things and server shutdown message" />
-    <option name="LAST_COMMIT_MESSAGE" value="things and server shutdown message" />
+    <MESSAGE value="selection logic start" />
+    <option name="LAST_COMMIT_MESSAGE" value="selection logic start" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -192,27 +199,9 @@
           <line>74</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
+        <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/selection/Selection.java</url>
-          <line>20</line>
-          <log-expression expression="Thread.currentThread()" language="JAVA" />
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/selection/Selection.java</url>
-          <line>28</line>
-          <log-expression expression="Thread.currentThread()" language="JAVA" />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/selection/Selection.java</url>
-          <line>54</line>
-          <log-expression expression="Thread.currentThread()" language="JAVA" />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/selection/Selection.java</url>
-          <line>92</line>
+          <line>89</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>

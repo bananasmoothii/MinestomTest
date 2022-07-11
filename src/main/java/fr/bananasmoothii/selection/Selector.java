@@ -1,4 +1,4 @@
-package selection;
+package fr.bananasmoothii.selection;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Point;
@@ -7,7 +7,6 @@ import net.minestom.server.event.EventListener;
 import net.minestom.server.event.player.PlayerBlockBreakEvent;
 import net.minestom.server.event.player.PlayerBlockInteractEvent;
 import net.minestom.server.instance.Instance;
-import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.UnknownNullability;

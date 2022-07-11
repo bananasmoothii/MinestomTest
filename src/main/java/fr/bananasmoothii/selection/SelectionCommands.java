@@ -1,4 +1,4 @@
-package selection;
+package fr.bananasmoothii.selection;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.command.CommandManager;

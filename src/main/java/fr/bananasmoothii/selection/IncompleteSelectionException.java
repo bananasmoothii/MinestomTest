@@ -1,4 +1,4 @@
-package selection;
+package fr.bananasmoothii.selection;
 
 /**
  * Threw when trying to do something that involves a selection, but the player has not selected a region yet.

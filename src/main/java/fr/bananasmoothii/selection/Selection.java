@@ -1,9 +1,10 @@
-package selection;
+package fr.bananasmoothii.selection;
 
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.tinylog.Logger;
 
 import java.util.Objects;
 
@@ -15,25 +16,27 @@ public class Selection {
 
     public Selection(@NotNull Player player) {
         this.player = Objects.requireNonNull(player, "player cannot be null");
+        Logger.info("selection create thread: " + Thread.currentThread());
     }
 
     public void selectPos1(@NotNull Point pos) {
         xFrom = pos.blockX();
         yFrom = pos.blockY();
         zFrom = pos.blockZ();
-        reorderPositions();
         pos1Selected = true;
+        reorderPositions();
     }
 
     public void selectPos2(@NotNull Point pos) {
         xTo = pos.blockX();
         yTo = pos.blockY();
         zTo = pos.blockZ();
-        reorderPositions();
         pos2Selected = true;
+        reorderPositions();
     }
 
     private void reorderPositions() {
+        if (!pos1Selected || !pos2Selected) return;
         if (xFrom > xTo) {
             final int temp = xFrom;
             xFrom = xTo;
@@ -52,12 +55,6 @@ public class Selection {
     }
 
     public void clear() {
-        xFrom = 0;
-        yFrom = 0;
-        zFrom = 0;
-        xTo = 0;
-        yTo = 0;
-        zTo = 0;
         pos1Selected = false;
         pos2Selected = false;
     }

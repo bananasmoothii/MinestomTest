@@ -1,5 +1,7 @@
 package fr.bananasmoothii.minestomtest;
 
+import fr.bananasmoothii.selection.SelectionCommands;
+import fr.bananasmoothii.selection.Selector;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.minestom.server.MinecraftServer;
@@ -9,16 +11,13 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.event.GlobalEventHandler;
 import net.minestom.server.event.player.PlayerLoginEvent;
 import net.minestom.server.extras.MojangAuth;
-import net.minestom.server.instance.Instance;
 import net.minestom.server.instance.InstanceContainer;
 import net.minestom.server.instance.InstanceManager;
 import net.minestom.server.instance.block.Block;
 import net.minestom.server.instance.generator.UnitModifier;
 import org.tinylog.Logger;
-import selection.SelectionCommands;
-import selection.Selector;
 
-import java.util.concurrent.ForkJoinPool;
+import static net.kyori.adventure.text.minimessage.MiniMessage.miniMessage;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,6 +38,10 @@ public class Main {
             modifier.fillHeight(63, 64, Block.GRASS_BLOCK);
         });
 
+        MinecraftServer.getCommandManager().setUnknownCommandCallback((sender, command) -> {
+            sender.sendMessage(miniMessage().deserialize("<#9c6d2c>Sorry, this command does not exist."));
+        });
+
         // enable a WorldEdit-like selector
         Selector.enable(instanceContainer);
         SelectionCommands.registerAll();
@@ -54,10 +57,8 @@ public class Main {
 
         // Server shutdown custom message
         MinecraftServer.getSchedulerManager().buildShutdownTask(() -> {
-            for (Instance instance : instanceManager.getInstances()) {
-                for (Player player : instance.getPlayers()) {
-                    player.kick(Component.text("Server is shutting down", TextColor.color(255, 0, 0)));
-                }
+            for (Player player : MinecraftServer.getConnectionManager().getOnlinePlayers()) {
+                player.kick(Component.text("Server is shutting down", TextColor.color(255, 0, 0)));
             }
         });
 
