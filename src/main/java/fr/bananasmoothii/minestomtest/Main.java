@@ -38,13 +38,14 @@ public class Main {
             modifier.fillHeight(63, 64, Block.GRASS_BLOCK);
         });
 
-        MinecraftServer.getCommandManager().setUnknownCommandCallback((sender, command) -> {
-            sender.sendMessage(miniMessage().deserialize("<#9c6d2c>Sorry, this command does not exist."));
-        });
+        MinecraftServer.getCommandManager().setUnknownCommandCallback((sender, command) ->
+                sender.sendMessage(miniMessage().deserialize("<#9c6d2c>Sorry, this command does not exist.")));
 
         // enable a WorldEdit-like selector
-        Selector.enable(instanceContainer);
+        Selector.autoEnable();
         SelectionCommands.registerAll();
+
+        MinecraftServer.getCommandManager().register(new MCWFCCommand());
 
         // Add an event callback to specify the spawning instance (and the spawn position)
         GlobalEventHandler globalEventHandler = MinecraftServer.getGlobalEventHandler();
@@ -65,4 +66,6 @@ public class Main {
         // Start the server on port 25565
         minecraftServer.start("0.0.0.0", 25565);
     }
+
+
 }

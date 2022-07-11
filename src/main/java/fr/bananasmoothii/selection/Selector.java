@@ -3,7 +3,6 @@ package fr.bananasmoothii.selection;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Point;
 import net.minestom.server.entity.Player;
-import net.minestom.server.event.EventListener;
 import net.minestom.server.event.player.PlayerBlockBreakEvent;
 import net.minestom.server.event.player.PlayerBlockInteractEvent;
 import net.minestom.server.instance.Instance;
@@ -23,28 +22,22 @@ public class Selector {
 
     private final Instance instance;
     private final Map<Player, Selection> selections = new HashMap<>();
-
     private Selector(@NotNull Instance instance) {
         this.instance = instance;
 
-        var blockBreakListener = EventListener.of(PlayerBlockBreakEvent.class, event -> {
-            if (event.getPlayer().getItemInMainHand().material() == Material.DIAMOND_HOE) {
-                event.setCancelled(true);
-                selectPos1(event.getPlayer(), event.getBlockPosition());
-            }
-        });
-        var blockInteractListener = EventListener.of(PlayerBlockInteractEvent.class, event -> {
-            if (event.getPlayer().getItemInMainHand().material() == Material.DIAMOND_HOE) {
-                event.setCancelled(true);
-                selectPos2(event.getPlayer(), event.getBlockPosition());
-            }
-        });
-        if (autoEnable) {
-            MinecraftServer.getGlobalEventHandler().addListener(blockBreakListener);
-            MinecraftServer.getGlobalEventHandler().addListener(blockInteractListener);
-        } else {
-            instance.eventNode().addListener(blockBreakListener);
-            instance.eventNode().addListener(blockInteractListener);
+        if (!autoEnable) {
+            instance.eventNode().addListener(PlayerBlockBreakEvent.class, event -> {
+                if (event.getPlayer().getItemInMainHand().material() == Material.DIAMOND_HOE) {
+                    event.setCancelled(true);
+                    selectPos1(event.getPlayer(), event.getBlockPosition());
+                }
+            });
+            instance.eventNode().addListener(PlayerBlockInteractEvent.class, event -> {
+                if (event.getHand() == Player.Hand.MAIN && event.getPlayer().getItemInMainHand().material() == Material.DIAMOND_HOE) {
+                    event.setCancelled(true);
+                    selectPos2(event.getPlayer(), event.getBlockPosition());
+                }
+            });
         }
 
     }
@@ -86,6 +79,18 @@ public class Selector {
         if (! selectors.isEmpty()) throw new IllegalStateException("the selector is already enabled on some instances, " +
                 "you must choose between enabling the selector per instance or globally");
         autoEnable = true;
+        MinecraftServer.getGlobalEventHandler().addListener(PlayerBlockBreakEvent.class, event -> {
+            if (event.getPlayer().getItemInMainHand().material() == Material.DIAMOND_HOE) {
+                event.setCancelled(true);
+                withInstance(event.getInstance()).selectPos1(event.getPlayer(), event.getBlockPosition());
+            }
+        });
+        MinecraftServer.getGlobalEventHandler().addListener(PlayerBlockInteractEvent.class, event -> {
+            if (event.getHand() == Player.Hand.MAIN && event.getPlayer().getItemInMainHand().material() == Material.DIAMOND_HOE) {
+                event.setCancelled(true);
+                withInstance(event.getInstance()).selectPos2(event.getPlayer(), event.getBlockPosition());
+            }
+        });
     }
 
     public static void enable(@NotNull Instance instance) {
@@ -94,6 +99,7 @@ public class Selector {
     }
 
     public static boolean isEnabled(@NotNull Instance instance) {
+        if (autoEnable) return true;
         return selectors.containsKey(instance);
     }
 }

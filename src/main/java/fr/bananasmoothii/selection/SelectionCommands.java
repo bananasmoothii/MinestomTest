@@ -9,6 +9,9 @@ import net.minestom.server.command.builder.CommandExecutor;
 import net.minestom.server.command.builder.arguments.ArgumentType;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.Instance;
+import net.minestom.server.inventory.PlayerInventory;
+import net.minestom.server.item.ItemStack;
+import net.minestom.server.item.Material;
 import net.minestom.server.utils.Direction;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,11 +30,21 @@ public class SelectionCommands {
         c.register(new Pos2());
         c.register(new ExpandContract());
         c.register(new Unselect());
+        c.register(new Wand());
 
         areRegistered = true;
     }
 
-    interface SelectionsExecutor extends CommandExecutor {
+    /**
+     * Another {@link CommandExecutor} that checks if
+     * <ol>
+     *     <li>The {@link CommandSender} is a {@link Player}</li>
+     *     <li>The {@link Player} is in an {@link Instance}</li>
+     *     <li>Selections are enabled in this instance</li>
+     * </ol>
+     */
+    @FunctionalInterface
+    public interface SelectionsExecutor extends CommandExecutor {
 
         @Override
         default void apply(@NotNull CommandSender sender, @NotNull CommandContext context) {
@@ -156,6 +169,21 @@ public class SelectionCommands {
             setDefaultExecutor((SelectionsExecutor) (player, context) -> {
                 Selector.withInstance(player.getInstance()).getSelection(player).clear();
                 player.sendMessage(miniMessage().deserialize("<light_purple>Selection cleared"));
+            });
+        }
+    }
+
+    static class Wand extends Command {
+        public Wand() {
+            super("/wand");
+            setDefaultExecutor((SelectionsExecutor) (player, context) -> {
+                final PlayerInventory inventory = player.getInventory();
+                final ItemStack itemInMainHand = inventory.getItemInMainHand();
+                inventory.setItemInMainHand(ItemStack.of(Material.DIAMOND_HOE));
+                if (!itemInMainHand.isAir()) {
+                    inventory.addItemStack(itemInMainHand);
+                }
+                player.sendMessage(miniMessage().deserialize("<light_purple>You have been given a wand"));
             });
         }
     }
